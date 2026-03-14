@@ -1,0 +1,288 @@
+/* Reset & Base */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, sans-serif;
+  background-color: #f5f5f7;
+  color: #1d1d1f;
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  padding: 40px 16px;
+}
+
+/* App Container */
+.app {
+  width: 100%;
+  max-width: 480px;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+/* Header */
+.header {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.header__title {
+  font-size: 32px;
+  font-weight: 700;
+  color: #1d1d1f;
+}
+
+.header__date {
+  font-size: 14px;
+  color: #86868b;
+  font-weight: 400;
+}
+
+/* Week Navigation */
+.week-nav {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.week-nav__btn {
+  background: none;
+  border: none;
+  font-size: 16px;
+  color: #86868b;
+  cursor: pointer;
+  padding: 8px;
+  border-radius: 8px;
+  transition: background-color 0.2s;
+  flex-shrink: 0;
+}
+
+.week-nav__btn:hover {
+  background-color: #e8e8ed;
+}
+
+.week-nav__days {
+  display: flex;
+  flex: 1;
+  gap: 4px;
+  list-style: none;
+}
+
+.week-nav__day {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  padding: 10px 4px;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.week-nav__day:hover {
+  background-color: #e8e8ed;
+}
+
+.week-nav__day--selected {
+  background-color: #1d1d1f;
+  color: #ffffff;
+}
+
+.week-nav__day--selected:hover {
+  background-color: #333336;
+}
+
+.week-nav__day--today {
+  position: relative;
+}
+
+.week-nav__day--today::after {
+  content: '';
+  width: 5px;
+  height: 5px;
+  background-color: #ff3b30;
+  border-radius: 50%;
+  position: absolute;
+  top: 4px;
+  right: 8px;
+}
+
+.week-nav__day-name {
+  font-size: 11px;
+  font-weight: 500;
+  color: #86868b;
+}
+
+.week-nav__day--selected .week-nav__day-name {
+  color: #a1a1a6;
+}
+
+.week-nav__day-number {
+  font-size: 16px;
+  font-weight: 600;
+}
+
+.week-nav__day-count {
+  font-size: 10px;
+  font-weight: 500;
+  color: #86868b;
+  min-height: 14px;
+}
+
+.week-nav__day--selected .week-nav__day-count {
+  color: #a1a1a6;
+}
+
+/* Todo Section */
+.todo-section {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.todo-section__header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.todo-section__count {
+  font-size: 18px;
+  font-weight: 600;
+  color: #1d1d1f;
+}
+
+/* Todo Form */
+.todo-form {
+  display: flex;
+  gap: 8px;
+}
+
+.todo-form__input {
+  flex: 1;
+  padding: 12px 16px;
+  border: 1px solid #d2d2d7;
+  border-radius: 12px;
+  font-size: 14px;
+  font-family: inherit;
+  outline: none;
+  transition: border-color 0.2s;
+  background-color: #ffffff;
+}
+
+.todo-form__input:focus {
+  border-color: #1d1d1f;
+}
+
+.todo-form__btn {
+  padding: 12px 20px;
+  background-color: #1d1d1f;
+  color: #ffffff;
+  border: none;
+  border-radius: 12px;
+  font-size: 14px;
+  font-weight: 600;
+  font-family: inherit;
+  cursor: pointer;
+  transition: background-color 0.2s;
+  flex-shrink: 0;
+}
+
+.todo-form__btn:hover {
+  background-color: #333336;
+}
+
+/* Todo List */
+.todo-list {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  list-style: none;
+}
+
+.todo-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 14px 16px;
+  background-color: #ffffff;
+  border-radius: 12px;
+  transition: opacity 0.2s;
+}
+
+.todo-item--done {
+  opacity: 0.5;
+}
+
+.todo-item__checkbox {
+  width: 22px;
+  height: 22px;
+  border: 2px solid #d2d2d7;
+  border-radius: 50%;
+  cursor: pointer;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s;
+  background: none;
+  padding: 0;
+}
+
+.todo-item__checkbox:hover {
+  border-color: #1d1d1f;
+}
+
+.todo-item--done .todo-item__checkbox {
+  background-color: #1d1d1f;
+  border-color: #1d1d1f;
+}
+
+.todo-item--done .todo-item__checkbox::after {
+  content: '✓';
+  color: #ffffff;
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.todo-item__text {
+  flex: 1;
+  font-size: 14px;
+  font-weight: 400;
+  word-break: break-word;
+}
+
+.todo-item--done .todo-item__text {
+  text-decoration: line-through;
+  color: #86868b;
+}
+
+.todo-item__delete {
+  background: none;
+  border: none;
+  font-size: 18px;
+  color: #d2d2d7;
+  cursor: pointer;
+  padding: 4px;
+  line-height: 1;
+  transition: color 0.2s;
+}
+
+.todo-item__delete:hover {
+  color: #ff3b30;
+}
+
+/* Empty State */
+.todo-list__empty {
+  text-align: center;
+  padding: 40px 0;
+  color: #86868b;
+  font-size: 14px;
+}
