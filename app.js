@@ -3,7 +3,7 @@ const DAY_NAMES = ["일", "월", "화", "수", "목", "금", "토"];
 /* ── State ── */
 let selectedDate = new Date();
 let weekOffset = 0;
-let todos = {};
+let todos = loadTodos();
 
 /* ── DOM Elements ── */
 const currentDateEl = document.getElementById("currentDate");
@@ -14,6 +14,19 @@ const todoForm = document.getElementById("todoForm");
 const todoInput = document.getElementById("todoInput");
 const todoList = document.getElementById("todoList");
 const todoCountEl = document.getElementById("todoCount");
+
+/* ── LocalStorage ── */
+function loadTodos() {
+  try {
+    return JSON.parse(localStorage.getItem("todos")) || {};
+  } catch {
+    return {};
+  }
+}
+
+function saveTodos() {
+  localStorage.setItem("todos", JSON.stringify(todos));
+}
 
 /* ── Date Helpers ── */
 function formatDateKey(date) {
@@ -153,11 +166,13 @@ function addTodo(text) {
     todos[dateKey] = [];
   }
   todos[dateKey].push({ text, done: false });
+  saveTodos();
   render();
 }
 
 function toggleTodo(dateKey, index) {
   todos[dateKey][index].done = !todos[dateKey][index].done;
+  saveTodos();
   render();
 }
 
@@ -166,6 +181,7 @@ function deleteTodo(dateKey, index) {
   if (todos[dateKey].length === 0) {
     delete todos[dateKey];
   }
+  saveTodos();
   render();
 }
 
