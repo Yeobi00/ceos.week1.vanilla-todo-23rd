@@ -14,6 +14,7 @@ const todoForm = document.getElementById("todoForm");
 const todoInput = document.getElementById("todoInput");
 const todoList = document.getElementById("todoList");
 const todoCountEl = document.getElementById("todoCount");
+const themeToggleBtn = document.getElementById("themeToggle");
 
 /* ── LocalStorage ── */
 function loadTodos() {
@@ -185,7 +186,24 @@ function deleteTodo(dateKey, index) {
   render();
 }
 
+/* ── Dark Mode ── */
+function loadTheme() {
+  const savedTheme = localStorage.getItem("theme");
+  if (savedTheme === "dark") {
+    document.body.classList.add("dark");
+    themeToggleBtn.textContent = "\u2600\uFE0F";
+  }
+}
+
+function toggleTheme() {
+  const isDark = document.body.classList.toggle("dark");
+  themeToggleBtn.textContent = isDark ? "\u2600\uFE0F" : "\uD83C\uDF19";
+  localStorage.setItem("theme", isDark ? "dark" : "light");
+}
+
 /* ── Event Listeners ── */
+themeToggleBtn.addEventListener("click", toggleTheme);
+
 todoForm.addEventListener("submit", (e) => {
   // 불필요한 페이지 새로고침 방지 및 현재 UI 유지
   e.preventDefault();
@@ -210,4 +228,5 @@ nextWeekBtn.addEventListener("click", () => {
 });
 
 /* ── Init ── */
+loadTheme();
 render();

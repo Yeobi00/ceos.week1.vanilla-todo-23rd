@@ -32,10 +32,32 @@ body {
   gap: 4px;
 }
 
+.header__top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
 .header__title {
   font-size: 32px;
   font-weight: 700;
   color: #1d1d1f;
+}
+
+/* Theme Toggle */
+.theme-toggle {
+  background: none;
+  border: none;
+  font-size: 24px;
+  cursor: pointer;
+  padding: 4px;
+  border-radius: 8px;
+  transition: background-color 0.2s;
+  line-height: 1;
+}
+
+.theme-toggle:hover {
+  background-color: #e8e8ed;
 }
 
 .header__date {
@@ -285,6 +307,101 @@ body {
   padding: 40px 0;
   color: #86868b;
   font-size: 14px;
+}
+
+/* Dark Mode */
+body.dark {
+  background-color: #1c1c1e;
+  color: #f5f5f7;
+}
+
+body.dark .header__title {
+  color: #f5f5f7;
+}
+
+body.dark .theme-toggle:hover {
+  background-color: #3a3a3c;
+}
+
+body.dark .week-nav__btn {
+  color: #a1a1a6;
+}
+
+body.dark .week-nav__btn:hover {
+  background-color: #3a3a3c;
+}
+
+body.dark .week-nav__day:hover {
+  background-color: #3a3a3c;
+}
+
+body.dark .week-nav__day--selected {
+  background-color: #f5f5f7;
+  color: #1c1c1e;
+}
+
+body.dark .week-nav__day--selected:hover {
+  background-color: #e5e5e7;
+}
+
+body.dark .week-nav__day--selected .week-nav__day-name {
+  color: #86868b;
+}
+
+body.dark .week-nav__day--selected .week-nav__day-count {
+  color: #86868b;
+}
+
+body.dark .todo-section__count {
+  color: #f5f5f7;
+}
+
+body.dark .todo-form__input {
+  background-color: #2c2c2e;
+  border-color: #3a3a3c;
+  color: #f5f5f7;
+}
+
+body.dark .todo-form__input:focus {
+  border-color: #f5f5f7;
+}
+
+body.dark .todo-form__btn {
+  background-color: #f5f5f7;
+  color: #1c1c1e;
+}
+
+body.dark .todo-form__btn:hover {
+  background-color: #e5e5e7;
+}
+
+body.dark .todo-item {
+  background-color: #2c2c2e;
+}
+
+body.dark .todo-item__checkbox {
+  border-color: #48484a;
+}
+
+body.dark .todo-item__checkbox:hover {
+  border-color: #f5f5f7;
+}
+
+body.dark .todo-item--done .todo-item__checkbox {
+  background-color: #f5f5f7;
+  border-color: #f5f5f7;
+}
+
+body.dark .todo-item--done .todo-item__checkbox::after {
+  color: #1c1c1e;
+}
+
+body.dark .todo-item__text {
+  color: #f5f5f7;
+}
+
+body.dark .todo-item__delete {
+  color: #48484a;
 }
 
 /* Responsive */
