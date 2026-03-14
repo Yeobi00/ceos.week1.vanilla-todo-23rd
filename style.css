@@ -286,3 +286,26 @@ body {
   color: #86868b;
   font-size: 14px;
 }
+
+/* Responsive */
+@media (max-width: 480px) {
+  body {
+    padding: 24px 12px;
+  }
+
+  .header__title {
+    font-size: 28px;
+  }
+
+  .week-nav__day {
+    padding: 8px 2px;
+  }
+
+  .week-nav__day-number {
+    font-size: 14px;
+  }
+
+  .week-nav__day-name {
+    font-size: 10px;
+  }
+}
