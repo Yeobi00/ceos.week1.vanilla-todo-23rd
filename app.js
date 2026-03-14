@@ -10,6 +10,8 @@ const currentDateEl = document.getElementById("currentDate");
 const weekDaysEl = document.getElementById("weekDays");
 const prevWeekBtn = document.getElementById("prevWeek");
 const nextWeekBtn = document.getElementById("nextWeek");
+const todoForm = document.getElementById("todoForm");
+const todoInput = document.getElementById("todoInput");
 const todoList = document.getElementById("todoList");
 const todoCountEl = document.getElementById("todoCount");
 
@@ -109,6 +111,32 @@ function renderTodos() {
     todoList.appendChild(emptyLi);
     return;
   }
+
+  currentTodos.forEach((todo, index) => {
+    const li = document.createElement("li");
+    li.className = "todo-item";
+    if (todo.done) li.classList.add("todo-item--done");
+
+    const checkbox = document.createElement("button");
+    checkbox.className = "todo-item__checkbox";
+    checkbox.setAttribute("aria-label", "완료 토글");
+    checkbox.addEventListener("click", () => toggleTodo(dateKey, index));
+
+    const text = document.createElement("span");
+    text.className = "todo-item__text";
+    text.textContent = todo.text;
+
+    const deleteBtn = document.createElement("button");
+    deleteBtn.className = "todo-item__delete";
+    deleteBtn.setAttribute("aria-label", "삭제");
+    deleteBtn.textContent = "×";
+    deleteBtn.addEventListener("click", () => deleteTodo(dateKey, index));
+
+    li.appendChild(checkbox);
+    li.appendChild(text);
+    li.appendChild(deleteBtn);
+    todoList.appendChild(li);
+  });
 }
 
 /* ── Render All ── */
@@ -118,7 +146,43 @@ function render() {
   renderTodos();
 }
 
+/* ── Todo Actions ── */
+function addTodo(text) {
+  const dateKey = formatDateKey(selectedDate);
+  if (!todos[dateKey]) {
+    todos[dateKey] = [];
+  }
+  todos[dateKey].push({ text, done: false });
+  render();
+}
+
+function toggleTodo(dateKey, index) {
+  todos[dateKey][index].done = !todos[dateKey][index].done;
+  render();
+}
+
+function deleteTodo(dateKey, index) {
+  todos[dateKey].splice(index, 1);
+  if (todos[dateKey].length === 0) {
+    delete todos[dateKey];
+  }
+  render();
+}
+
 /* ── Event Listeners ── */
+todoForm.addEventListener("submit", (e) => {
+  // 불필요한 페이지 새로고침 방지 및 현재 UI 유지
+  e.preventDefault();
+
+  // 공백 문자열만 입력 시 등록 안되도록 공백 제거
+  const text = todoInput.value.trim();
+  if (text) {
+    addTodo(text);
+    todoInput.value = "";
+    todoInput.focus();
+  }
+});
+
 prevWeekBtn.addEventListener("click", () => {
   weekOffset--;
   render();
