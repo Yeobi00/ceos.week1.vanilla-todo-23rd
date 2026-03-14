@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Todo가 미래다</title>
+    <!-- 웹폰트 pretendard 적용 -->
+    <link
+      rel="stylesheet"
+      as="style"
+      crossorigin
+      href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css"
+    />
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <main class="app">
+      <header class="header">
+        <h1 class="header__title">To Do</h1>
+        <p class="header__date" id="currentDate"></p>
+      </header>
+
+      <nav class="week-nav">
+        <button class="week-nav__btn" id="prevWeek" aria-label="이전 주">
+          &#9664;
+        </button>
+        <ul class="week-nav__days" id="weekDays"></ul>
+        <button class="week-nav__btn" id="nextWeek" aria-label="다음 주">
+          &#9654;
+        </button>
+      </nav>
+
+      <section class="todo-section">
+        <div class="todo-section__header">
+          <h2 class="todo-section__count" id="todoCount">0개</h2>
+        </div>
+
+        <form class="todo-form" id="todoForm">
+          <input
+            type="text"
+            class="todo-form__input"
+            id="todoInput"
+            placeholder="할 일을 입력하세요"
+            required
+          />
+          <button type="submit" class="todo-form__btn">등록</button>
+        </form>
+
+        <ul class="todo-list" id="todoList"></ul>
+      </section>
+    </main>
+
+    <script src="app.js"></script>
+  </body>
+</html>
